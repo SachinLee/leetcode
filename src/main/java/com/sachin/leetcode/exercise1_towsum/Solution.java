@@ -27,11 +27,17 @@ public class Solution {
         }
         Map<Integer, Integer> tmp = new HashMap<>(nums.length);
         for (int i = 0; i < nums.length; i++) {
+            // 每次循环时，计算需要的数值
             int num = target - nums[i];
+            // 查看 map 中是否已经存储了需要的数值
             if (tmp.containsKey(num)) {
+                // 如果已经存储，说明找到了两个合适的数，返回其索引
+                // 需要注意的时，因为 map 中保存的，是前一个数，因此其索引在前
                 result[0] = tmp.get(num);
                 result[1] = i;
             }
+
+            // 每次遍历暂存当前 数值 -> 索引
             tmp.put(nums[i], i);
         }
         return result;
